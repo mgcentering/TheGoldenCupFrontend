@@ -10,7 +10,7 @@ import {
   Alert,
   ScrollView,
 } from "react-native";
-import { getMenuItems, updateMenuItem, createMenuItem,deleteMenuItem } from "../api";
+import { getMenuItems, updateMenuItem, createMenuItem, deleteMenuItem } from "../api";
 
 export default function MenuScreen() {
   const [menuItems, setMenuItems] = useState([]);
@@ -66,16 +66,33 @@ export default function MenuScreen() {
   };
 
   // Delete item
-  const handleDelete = async (id) => {
-    try {
-      await deleteMenuItem(id);
-      Alert.alert("Deleted", "Menu item removed");
-      fetchMenu();
-    } catch (err) {
-      console.error(err);
-      Alert.alert("Error", "Failed to delete item");
-    }
+  const handleDelete = (id) => {
+    Alert.alert(
+      "Confirm Delete",
+      "Are you sure you want to delete this menu item?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "Delete",
+          style: "destructive",
+          onPress: async () => {
+            try {
+              await deleteMenuItem(id);
+              Alert.alert("Deleted", "Menu item removed successfully");
+              fetchMenu();
+            } catch (err) {
+              console.error(err);
+              Alert.alert("Error", "Failed to delete item");
+            }
+          },
+        },
+      ]
+    );
   };
+
 
   return (
     <ScrollView contentContainerStyle={styles.container}>

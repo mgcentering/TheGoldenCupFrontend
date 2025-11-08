@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useIsFocused } from "@react-navigation/native";
+
 import {
   View,
   Text,
@@ -16,20 +18,23 @@ import {
   listPrinters,
   connectPrinter,
   printReceipt,
-} from "../printer"; // printer.js file you already have
+} from "../printer"; 
 
 export default function CreateOrder() {
+  const isFocused = useIsFocused(); 
   const [customer, setCustomer] = useState("");
   const [items, setItems] = useState([{ item_name: "", price: 0, qty: 1 }]);
   const [menu, setMenu] = useState([]);
   const [printers, setPrinters] = useState([]);
   const [printer, setPrinter] = useState(null);
   const { width } = useWindowDimensions();
-  const isWide = width > 900; // responsive breakpoint
+  const isWide = width > 900; 
 
   useEffect(() => {
-    loadMenu();
-  }, []);
+    if (isFocused) {
+      loadMenu();
+    }
+  }, [isFocused]);
 
   async function loadMenu() {
     try {

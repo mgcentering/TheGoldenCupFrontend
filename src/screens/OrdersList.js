@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useIsFocused } from "@react-navigation/native";
 import {
   View,
   Text,
@@ -14,6 +15,7 @@ import { listOrders } from "../api";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
 export default function OrdersList() {
+  const isFocused = useIsFocused();
   const [orders, setOrders] = useState([]);
   const [page, setPage] = useState(1);
   const [date, setDate] = useState(moment().format("YYYY-MM-DD"));
@@ -21,11 +23,13 @@ export default function OrdersList() {
   const [hasMore, setHasMore] = useState(true);
   const [showDatePicker, setShowDatePicker] = useState(false);
 
-  const { width } = useWindowDimensions(); // 👈 Dynamic screen width
+  const { width } = useWindowDimensions(); 
 
   useEffect(() => {
-    fetchOrders(1, date, true);
-  }, [date]);
+    if (isFocused) {
+      fetchOrders(1, date, true);
+    }
+  }, [date, isFocused]);
 
   const fetchOrders = async (pg = 1, selectedDate = date, reset = false) => {
     if (loading) return;
