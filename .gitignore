@@ -1,0 +1,9 @@
+android
+node_modules
+.DS_Store 
+build
+.idea 
+.vscode
+*.iml
+.expo
+package-lock.json

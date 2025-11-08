@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "The Golden Cup",
+    "slug": "the-golden-cup",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "android": {
+      "package": "com.gokul.thegoldencup",
+      "permissions": [
+        "android.permission.BLUETOOTH",
+        "android.permission.BLUETOOTH_ADMIN",
+        "android.permission.BLUETOOTH_CONNECT",
+        "android.permission.BLUETOOTH_SCAN",
+        "android.permission.ACCESS_FINE_LOCATION"
+      ],
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSBluetoothAlwaysUsageDescription": "This app uses Bluetooth to print receipts to your thermal printer.",
+        "NSBluetoothPeripheralUsageDescription": "This app connects to Bluetooth printers for order receipts."
+      }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "967badf3-151a-4830-ab06-fda9d3cd6d6c"
+      }
+    },
+    "owner": "gokulgogul"
+  }
+}
